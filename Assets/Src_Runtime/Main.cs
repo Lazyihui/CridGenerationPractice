@@ -31,11 +31,15 @@ namespace CellPractice {
             };
 
         void Start() {
+
             rd = new RD();
             cells = new int[width * height];
 
             // 填充
             CellAlgorithm.Fill(cells, 1);
+
+            // 随机数种子 找到一个点
+            CellAlgorithm.Replace_OneCell(rd, cells, 1, 2);
 
         }
 
