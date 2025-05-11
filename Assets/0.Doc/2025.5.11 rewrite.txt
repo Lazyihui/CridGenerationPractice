@@ -1,0 +1,16 @@
+1. 用一维数组表示网格：
+    x + y * width = index
+
+    x = index % width
+    y = index / width
+2. int typeID表示单cell内容
+3. rewrite思维
+4. WB=BB、直线(有向)、侵蚀(有向)、泛洪水(无向)、描边(无向)、播种算法(无向)
+5. 算法流程：
+- 生成起点 or 选择起点
+- 循环次数：目标生成cell数、失败尝试数、维护Open、维护Close
+6. 进阶：
+- 基于哪种typeID的cell
+- 邻居关系：
+    - 远离、邻近
+    - 是否覆盖
