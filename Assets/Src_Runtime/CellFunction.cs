@@ -30,7 +30,6 @@ namespace CellPractice {
             // or 一句话概括
             // return (int)dir;
         }
-
     }
 
 }

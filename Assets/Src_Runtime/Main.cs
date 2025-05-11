@@ -32,7 +32,7 @@ namespace CellPractice {
 
         void Start() {
 
-            rd = new RD();
+            rd = new RD(seed);
             cells = new int[width * height];
 
             // 填充
@@ -46,6 +46,10 @@ namespace CellPractice {
         int fromIndex;
 
         void Update() {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                // 随机数种子 找到一个点
+                CellAlgorithm.WB_To_BB_Loop_Once(cells, width, height, new int[] { 1, 2 }, new int[] { 2, 2 });
+            }
 
         }
 

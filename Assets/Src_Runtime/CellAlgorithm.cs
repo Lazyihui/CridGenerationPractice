@@ -35,8 +35,59 @@ namespace CellPractice {
         #region 白黑=>黑黑
         public static void WB_To_BB_Loop_Once(int[] cells, int width, int height, int[] fromValue, int[] toValue) {
 
-            
+            Span<int> direction = stackalloc int[4] {
+               -width, // down
+                width,//up 
+                -1,//left 
+                 1,//right
+            };
 
+            bool isSuccess = false;
+
+            for (int currentIndex = 0; currentIndex < cells.Length; currentIndex++) {
+                int currentValue = cells[currentIndex];
+
+                if (currentValue != fromValue[0]) {
+                    // 不是白色
+                    continue;
+                }
+
+                int nextIndex;
+                int nextValue;
+
+                // 运算
+                for (int j = 0; j < direction.Length; j++) {
+                    int dirOffset = direction[j];
+                    nextIndex = currentIndex + dirOffset;
+                    nextIndex = Math.Clamp(nextIndex, 0, cells.Length - 1);
+                    nextValue = cells[nextIndex];
+                    if (nextValue != fromValue[1]) {
+                        // 不是黑色
+                        continue;
+                    }
+
+                    // 是黑色
+                    cells[currentIndex] = toValue[0];
+                    cells[nextIndex] = toValue[1];
+                    isSuccess = true;
+                    break;
+
+                }
+
+                if (isSuccess) {
+                    break;
+                }
+
+
+            }
+
+        }
+
+        public static void WB_To_BB_Loop_ToEnd(int[] cells, int width, int height, int[] fromValue, int[] toValue, int count) {
+            // 循环
+            for (int i = 0; i < count; i++) {
+                WB_To_BB_Loop_Once(cells, width, height, fromValue, toValue);
+            }
         }
 
 
