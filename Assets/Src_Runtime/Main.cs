@@ -41,6 +41,7 @@ namespace CellPractice {
             // 随机数种子 找到一个点
             CellAlgorithm.Replace_OneCell(rd, cells, 1, 2);
 
+
         }
 
         int fromIndex;
@@ -49,6 +50,18 @@ namespace CellPractice {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 // 随机数种子 找到一个点
                 CellAlgorithm.WB_To_BB_Loop_Once(cells, width, height, new int[] { 1, 2 }, new int[] { 2, 2 });
+            }
+
+            if (Input.GetKeyDown(KeyCode.R)) {
+                // 重新开始
+                CellAlgorithm.Fill(cells, 1);
+                CellAlgorithm.Replace_OneCell(rd, cells, 1, 2);
+            }
+
+            if (Input.GetKeyDown(KeyCode.G)) {
+                // 直线
+                int dir = CellFunctions.GetDir(Direction.Right);
+                CellAlgorithm.Line_Loop_Once(cells, width, height, ref fromIndex, dir, 3);
             }
 
         }

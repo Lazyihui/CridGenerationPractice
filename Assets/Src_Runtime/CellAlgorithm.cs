@@ -22,7 +22,6 @@ namespace CellPractice {
 
             do {
                 index = random.Next(0, cells.Length);//从数组中取一个随机的index
-                Debug.Log($"index: {index}");
                 if (cells[index] == fromValue) {
                     cells[index] = toValue;
                     break;
@@ -90,7 +89,35 @@ namespace CellPractice {
             }
         }
 
+        #endregion
 
+        #region Line
+        // 记录状态: 上次的点, 移动方向
+        public static void Line_Loop_Once(int[] cells, int width, int height, ref int fromIndex, int dir, int toValue) {
+            // fromIndex: 上次最后的点
+            // dir: 上次的移动方向
+
+            Span<int> directions = stackalloc int[4] {
+                width,  // up
+                1,      // right
+                -width, // down
+                -1,     // left
+            }; // 上下左右
+
+            int nextIndex = fromIndex + directions[dir];
+            // BUG: 确保直线
+            nextIndex = Math.Clamp(nextIndex, 0, cells.Length - 1); // 上下左右
+            cells[nextIndex] = toValue;
+
+            fromIndex = nextIndex; // 记录上次的点
+        }
+
+        public static void Line_Loop_ToEnd(int[] cells, int width, int height, ref int fromIndex, int dir, int toValue, int count) {
+            // 3. 循环
+            for (int i = 0; i < count; i++) {
+                Line_Loop_Once(cells, width, height, ref fromIndex, dir, toValue);
+            }
+        }
         #endregion
     }
 }

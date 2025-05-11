@@ -12,7 +12,7 @@ namespace CellPractice {
         Left = 3,
     }
 
-    public static class CellFunction {
+    public static class CellFunctions {
         public static int GetDir(Direction dir) {
             switch (dir) {
                 case Direction.Up:
