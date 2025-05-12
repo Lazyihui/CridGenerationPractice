@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Video;
 using RD = System.Random;
 
 namespace CellPractice {
@@ -118,6 +119,34 @@ namespace CellPractice {
                 Line_Loop_Once(cells, width, height, ref fromIndex, dir, toValue);
             }
         }
+        #endregion
+
+        #region 用路径连接两个点
+        public static void RBB_To_WWR_Once(int[] cells, int width, int height, int[] fromValue, int[] toValue) {
+            // 1. 找到一个点
+            // 2. 找到一个点
+            // 3. 循环
+            // 4. 结束
+
+            Span<int> directions = stackalloc int[4] {
+                width,  // up
+                1,      // right
+                -width, // down
+                -1,     // left
+            }; // 上下左右
+
+
+            for (int i = 0; i < cells.Length; i++) {
+            }
+        }
+
+        public static void RBB_To_WWR_ToEnd(int[] cells, int width, int height, int[] fromValue, int[] toValue, int count) {
+            // 3. 循环
+            for (int i = 0; i < count; i++) {
+                RBB_To_WWR_Once(cells, width, height, fromValue, toValue);
+            }
+        }
+
         #endregion
     }
 }
