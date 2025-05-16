@@ -128,6 +128,7 @@ namespace CellPractice {
             // 3. 循环
             // 4. 结束
 
+            // 我先用红白=>白红  
             Span<int> directions = stackalloc int[4] {
                 width,  // up
                 1,      // right
@@ -137,6 +138,36 @@ namespace CellPractice {
 
 
             for (int i = 0; i < cells.Length; i++) {
+                int currentValue = cells[i];
+
+                if (currentValue != fromValue[0]) {
+                    // 不是红色
+                    continue;
+                }
+
+                int nextIndex;
+                int nextValue;
+
+                // 运算
+                for (int j = 0; j < directions.Length; j++) {
+
+                    int dirOffset = directions[j];
+                    nextIndex = i + dirOffset;// 上下左右
+                    
+                    // BUG: 确保直线
+                    nextIndex = Math.Clamp(nextIndex, 0, cells.Length - 1);
+                    nextValue = cells[nextIndex];
+                    if (nextValue != fromValue[1]) {
+                        // 不是白色
+                        continue;
+                    }
+
+                    // 是白色
+                    cells[i] = toValue[0];
+                    cells[nextIndex] = toValue[1];
+                    return;
+
+                }
             }
         }
 

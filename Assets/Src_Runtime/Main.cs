@@ -25,7 +25,7 @@ namespace CellPractice {
         int[] cells;//产出
 
         public int seed = 0;
-        public int width = 10;
+        public int width = 15;
 
         public int height = 20;
 
@@ -49,6 +49,7 @@ namespace CellPractice {
 
             // 随机数种子 找到一个点 找到一红点
             CellAlgorithm.Replace_OneCell(rd, cells, (int)ColorMap.Black, (int)ColorMap.Red);
+            // CellAlgorithm.Replace_OneCell(rd, cells, (int)ColorMap.Black, (int)ColorMap.Red);
 
 
         }
@@ -72,6 +73,11 @@ namespace CellPractice {
             //     int dir = CellFunctions.GetDir(Direction.Right);
             //     CellAlgorithm.Line_Loop_Once(cells, width, height, ref fromIndex, dir, 3);
             // }
+
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                // 随机数种子 找到一个点
+                CellAlgorithm.RBB_To_WWR_Once(cells, width, height, new int[] { (int)ColorMap.Red, (int)ColorMap.Black }, new int[] { (int)ColorMap.White, (int)ColorMap.Red });
+            }
 
         }
 
